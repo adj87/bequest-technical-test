@@ -29,7 +29,7 @@ export const InputRadio: React.FC<InputRadioProps> = (props) => {
         </label>
         {options.map(({ label, value }) => {
           return (
-            <div className="ml-6">
+            <div className="ml-6" key={`option-${value}`}>
               <input
                 checked={inputValue === value}
                 id="default-radio-2"
