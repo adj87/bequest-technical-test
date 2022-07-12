@@ -8,7 +8,7 @@ interface InputRadioProps {
   children?: React.ReactNode;
 }
 
-const InputRadio: React.FC<InputRadioProps> = (props) => {
+export const InputRadio: React.FC<InputRadioProps> = (props) => {
   const { checked, name, onChange, children, label } = props;
   return (
     <>
@@ -33,5 +33,3 @@ const InputRadio: React.FC<InputRadioProps> = (props) => {
     </>
   );
 };
-
-export default InputRadio;
