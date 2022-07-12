@@ -22,14 +22,14 @@ export const InputRadio: React.FC<InputRadioProps> = (props) => {
   } = props;
   return (
     <>
-      <div className="flex items-center">
+      <div className="flex flex-col">
         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
           {label}
           {required && <span className="text-red-600"> *</span>}
         </label>
         {options.map(({ label, value }) => {
           return (
-            <>
+            <div className="ml-6">
               <input
                 checked={inputValue === value}
                 id="default-radio-2"
@@ -50,7 +50,7 @@ export const InputRadio: React.FC<InputRadioProps> = (props) => {
                   {label}
                 </label>
               )}
-            </>
+            </div>
           );
         })}
       </div>
