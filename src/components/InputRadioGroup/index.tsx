@@ -3,7 +3,7 @@ import { InputRadio } from "./InputRadio";
 
 interface InputRadioGroupProps<T> {
   onChange: (name: string, val: string) => void;
-  customLabel: React.ReactNode;
+  customLabel: React.FC<T>;
   valueKey: keyof T;
   options: T[];
   value: string;
@@ -16,7 +16,7 @@ interface InputRadioGroupProps<T> {
 export const InputRadioGroup = <T,>(props: InputRadioGroupProps<T>) => {
   const {
     onChange,
-    customLabel,
+    customLabel: CustomLabel,
     value: groupValue,
     options,
     name,
@@ -39,7 +39,7 @@ export const InputRadioGroup = <T,>(props: InputRadioGroupProps<T>) => {
               onChange={onChange}
               name={name}
               value={value}
-              customLabel={customLabel}
+              customLabel={<CustomLabel {...opt} />}
             />
           );
         })}
