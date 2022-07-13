@@ -3,11 +3,14 @@ import { Button } from "./Button";
 interface ModalButtonProps {
   title: string;
   children: React.ReactNode;
+  open: boolean;
+  onOk: () => void;
+  onCancel: () => void;
 }
 
 export const Modal: React.FC<ModalButtonProps> = (props) => {
-  const { children, title } = props;
-  return (
+  const { children, title, open, onOk, onCancel } = props;
+  return open ? (
     <>
       <div
         id="defaultModal"
@@ -27,6 +30,7 @@ export const Modal: React.FC<ModalButtonProps> = (props) => {
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                 data-modal-toggle="defaultModal"
+                onClick={(): void => onCancel()}
               >
                 <svg
                   className="w-5 h-5"
@@ -46,13 +50,17 @@ export const Modal: React.FC<ModalButtonProps> = (props) => {
             <div className="p-6 space-y-6">{children}</div>
             {/* Modal footer */}
             <div className="flex items-center justify-end p-4 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-              <Button text="Cancelar" color="white" />
-              <Button text="Aceptar" />
+              <Button
+                text="Cancelar"
+                color="white"
+                onClick={(): void => onCancel()}
+              />
+              <Button text="Aceptar" onClick={(): void => onOk()} />
             </div>
           </div>
         </div>
       </div>
-      <div className="opacity-25 fixed inset-0 z-40 bg-black" />
+      <div className="opacity-30 fixed inset-0 z-40 bg-black" />
     </>
-  );
+  ) : null;
 };
