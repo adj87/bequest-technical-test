@@ -33,6 +33,7 @@ export const InputRadioGroup = <T,>(props: InputRadioGroupProps<T>) => {
           const value = opt[valueKey] as unknown as string;
           return (
             <InputRadio
+              key={`option-${value}`}
               checked={value === groupValue}
               onChange={onChange}
               name={name}
