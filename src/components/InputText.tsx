@@ -1,4 +1,5 @@
 import React from "react";
+import InputLabel from "./InputLabel";
 
 interface InputTextProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
@@ -15,10 +16,7 @@ export const InputText: React.FC<InputTextProps> = (props) => {
   return (
     <>
       <div className="mb-6">
-        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-          {label}
-          {required && <span className="text-red-600"> *</span>}
-        </label>
+        <InputLabel required={required} text={label} />
         <input
           onChange={({ target }): void => onChange(target.name, target.value)}
           className={className}
