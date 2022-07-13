@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import "./index.css";
+import { InputRadioGroup, InputText } from "./components";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface Form {
+  radio: string;
+  text: string;
 }
+
+const App: React.FC = (props) => {
+  const [values, setValues] = useState<Form>({ radio: "1", text: "string" });
+  console.log(values);
+  return (
+    <>
+      <InputRadioGroup
+        name="radio"
+        value={values.radio}
+        options={[
+          { label: "opcion 1", value: "1" },
+          { label: "opcion 2", value: "2" }
+        ]}
+        onChange={(name, val): void => setValues({ ...values, [name]: val })}
+        label={"label test"}
+        customLabel={<span>qw</span>}
+      />
+      <InputText
+        label="Label input"
+        required={true}
+        onChange={(name, val): void => setValues({ ...values, [name]: val })}
+        name="text"
+        value={values.text}
+      />
+    </>
+  );
+};
 
 export default App;
