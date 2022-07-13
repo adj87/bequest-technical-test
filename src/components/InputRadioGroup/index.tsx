@@ -1,17 +1,19 @@
 import React from "react";
 import { InputRadio } from "./InputRadio";
 
-interface InputRadioGroupProps {
+interface InputRadioGroupProps<T> {
   onChange: (name: string, val: string) => void;
-  customLabel?: React.ReactNode;
-  options: { label: string; value: string }[];
+  customLabel: React.ReactNode;
+  valueKey: keyof T;
+  options: T[];
   value: string;
   name: string;
-  label: string;
   required?: boolean;
+  label: string;
 }
 
-export const InputRadioGroup: React.FC<InputRadioGroupProps> = (props) => {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const InputRadioGroup = <T,>(props: InputRadioGroupProps<T>) => {
   const {
     onChange,
     customLabel,
@@ -19,7 +21,8 @@ export const InputRadioGroup: React.FC<InputRadioGroupProps> = (props) => {
     options,
     name,
     required,
-    label
+    label,
+    valueKey
   } = props;
   return (
     <>
@@ -28,14 +31,14 @@ export const InputRadioGroup: React.FC<InputRadioGroupProps> = (props) => {
           {label}
           {required && <span className="text-red-600"> *</span>}
         </label>
-        {options.map(({ label, value }) => {
+        {options.map((opt: T) => {
+          const value = opt[valueKey] as unknown as string;
           return (
             <InputRadio
               checked={value === groupValue}
               onChange={onChange}
               name={name}
               value={value}
-              label={label}
               customLabel={customLabel}
             />
           );
