@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:focus-visible {
+  outline: none;
+}
+
+.react-select__control {
+  @apply h-12;
+  @apply border-custom-green #{!important};
+  @apply shadow-none #{!important};
+  @apply rounded-lg #{!important};
+}
+
+.react-select__control:hover {
+  @apply border-custom-green #{!important};
+}
+
+.react-select__menu-is-open {
+  @apply ring-custom-green;
+  @apply border-custom-green;
+}
+
+.react-select__option--is-selected {
+  @apply bg-custom-green #{!important};
+}
+
+.react-select__option--is-focused {
+  @apply bg-custom-green-100 #{!important};
+}
+
+.react-select__value-container {
+  @apply bg-gray-50;
+  @apply border-gray-300;
+  @apply text-gray-900;
+  @apply text-sm;
+
+  @apply focus:ring-custom-green;
+  @apply focus:border-custom-green;
+  @apply block;
+  @apply w-full;
+  @apply h-full;
+  @apply p-2.5;
+}
