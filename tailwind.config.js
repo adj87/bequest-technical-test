@@ -7,7 +7,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "custom-green": "#4eadb9",
+        "custom-green": {
+          DEFAULT: "#4EADB9",
+          50: "#D2EAED",
+          100: "#C3E3E7",
+          200: "#A6D6DC",
+          300: "#88C8D0",
+          400: "#6BBBC5",
+          500: "#4EADB9",
+          600: "#3B8A94",
+          700: "#2B656C",
+          800: "#1B3F44",
+          900: "#0B1A1C"
+        },
         "custom-red": {
           DEFAULT: "#F64C51",
           50: "#FFFBFB",
