@@ -28,15 +28,13 @@ export const Modal: React.FC<ModalButtonProps> = (props) => {
           className={`relative w-full h-full ${sizes[size]} p-4 h-auto m-auto`}
         >
           {/* Modal content */}
-          <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <div className="relative bg-white rounded-lg shadow">
             {/* Modal header */}
-            <div className="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                {title}
-              </h3>
+            <div className="flex items-start justify-between p-4 border-b rounded-t">
+              <h3 className="text-xl font-semibold text-gray-900">{title}</h3>
               <button
                 type="button"
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
                 data-modal-toggle="defaultModal"
                 onClick={(): void => onCancel()}
               >
@@ -57,7 +55,7 @@ export const Modal: React.FC<ModalButtonProps> = (props) => {
             {/* Modal body */}
             <div className="p-6 space-y-6">{children}</div>
             {/* Modal footer */}
-            <div className="flex items-center justify-end p-4 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <div className="flex items-center justify-end p-4 space-x-2 border-t border-gray-200 rounded-b">
               <Button
                 text="Cancelar"
                 color="white"
