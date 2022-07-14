@@ -6,10 +6,16 @@ interface ModalButtonProps {
   open: boolean;
   onOk: () => void;
   onCancel: () => void;
+  size?: "sm" | "md" | "lg";
 }
 
 export const Modal: React.FC<ModalButtonProps> = (props) => {
-  const { children, title, open, onOk, onCancel } = props;
+  const { children, title, open, onOk, onCancel, size = "lg" } = props;
+  const sizes = {
+    sm: "max-w-xl",
+    md: "max-w-2xl",
+    lg: "max-w-3xl"
+  };
   return open ? (
     <>
       <div
@@ -18,7 +24,9 @@ export const Modal: React.FC<ModalButtonProps> = (props) => {
         aria-hidden="true"
         className="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full flex"
       >
-        <div className="relative w-full h-full max-w-2xl p-4 md:h-auto m-auto ">
+        <div
+          className={`relative w-full h-full ${sizes[size]} p-4 h-auto m-auto`}
+        >
           {/* Modal content */}
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             {/* Modal header */}
