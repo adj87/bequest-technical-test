@@ -6,6 +6,8 @@
   outline: none;
 }
 
+// Customize react-select styles
+
 .react-select__control {
   @apply h-12;
   @apply border-custom-green #{!important};
@@ -35,11 +37,13 @@
   @apply border-gray-300;
   @apply text-gray-900;
   @apply text-sm;
-
-  @apply focus:ring-custom-green;
-  @apply focus:border-custom-green;
-  @apply block;
-  @apply w-full;
+  @apply rounded-xl #{!important};
   @apply h-full;
-  @apply p-2.5;
 }
+
+.react-select__indicators {
+  @apply bg-gray-50 #{!important};
+  @apply rounded-xl;
+}
+
+// End customize react-select styles
