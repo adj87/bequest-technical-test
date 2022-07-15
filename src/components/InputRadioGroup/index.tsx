@@ -34,7 +34,8 @@ export const InputRadioGroup = <T,>(props: InputRadioGroupProps<T>) => {
           return (
             <InputRadio
               key={`option-${value}`}
-              checked={value === groupValue}
+              // eslint-disable-next-line eqeqeq
+              checked={value == groupValue}
               onChange={onChange}
               name={name}
               value={value}

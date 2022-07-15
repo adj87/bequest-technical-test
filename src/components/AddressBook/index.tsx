@@ -35,7 +35,7 @@ export const AddressBook: React.FC<AddressBooksProps> = ({
       )}
       valueKey={"id"}
       value={value}
-      label={"Holaaa"}
+      label={"Select address"}
       onChange={onChange}
     />
   );
