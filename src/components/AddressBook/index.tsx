@@ -31,7 +31,7 @@ export const AddressBook: React.FC<AddressBooksProps> = ({
       name={name}
       options={options}
       optionLabel={(address): React.ReactElement => (
-        <span>{address.country}</span>
+        <span className="ml-4">{address.country}</span>
       )}
       valueKey={"id"}
       value={value}
