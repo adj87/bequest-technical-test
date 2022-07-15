@@ -16,7 +16,7 @@ export const InputRadio: React.FC<InputRadioProps> = ({
   optionLabel
 }) => {
   return (
-    <div className="ml-6">
+    <div className="ml-6 mt-2">
       <input
         checked={checked}
         id="default-radio-2"
