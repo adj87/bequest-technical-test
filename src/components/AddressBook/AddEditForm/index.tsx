@@ -68,6 +68,9 @@ const AddEditModalForm: React.FC<ModalFormProps> = (props) => {
             value={countries.find((el) => el.value === country)}
             getOptionLabel={({ value }): string => value}
             options={countries}
+            onChange={({ value }: any, { name }): void =>
+              setFieldValue(name as string, value) as unknown as void
+            }
           />
         </div>
       </div>
