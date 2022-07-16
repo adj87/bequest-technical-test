@@ -13,8 +13,7 @@ body {
 // Customize react-select styles
 
 .react-select__control {
-  @apply h-12;
-  @apply border-custom-green #{!important};
+  @apply h-11;
   @apply shadow-none #{!important};
   @apply rounded-lg #{!important};
 }

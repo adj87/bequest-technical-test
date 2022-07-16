@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { InputRadioGroup } from "../InputRadioGroup";
 import CreateEditModalForm from "./CreateEditForm";
+import { newAddress } from "./CreateEditForm/newAddress";
 
 export interface Address {
-  id: number;
+  id: number | null;
   line1: string;
   line2: string;
   line3: string;
@@ -62,8 +63,10 @@ export const AddressBook: React.FC<AddressBooksProps> = ({
         label={"Select address"}
         onChange={onChange}
       />
-      <span className="text-custom-green mt-8 inline-block cursor-pointer">
-        {" "}
+      <span
+        className="text-custom-green mt-8 inline-block cursor-pointer"
+        onClick={(): void => setAddressToForm(newAddress)}
+      >
         Add more addresses
       </span>
       {addressToForm && (
