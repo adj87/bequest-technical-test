@@ -14,16 +14,15 @@ const AddEditModalForm: React.FC<ModalFormProps> = (props) => {
   const { address, onOk, onCancel } = props;
   const { values, setValues, setFieldValue } = useFormik<Address>({
     initialValues: address,
-    onSubmit: (a: Address) => {
-      onOk(a);
-    }
+    onSubmit: (a: Address) => onOk(a)
   });
+  const { line1, line2, line3, country, id, postcode, town } = values;
   const countries = [{ value: "england" }, { value: "spain" }];
   return (
     <Modal
-      onOk={(): void => onOk(address)}
+      onOk={(): void => onOk(values)}
       onCancel={(): void => onCancel()}
-      title={values.id ? "Edit address" : "Add address"}
+      title={id ? "Edit address" : "Add address"}
       open={true}
     >
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4 px-2">
@@ -31,42 +30,42 @@ const AddEditModalForm: React.FC<ModalFormProps> = (props) => {
           label="Line 1"
           onChange={setFieldValue}
           name="line1"
-          value={values.line1}
+          value={line1}
           required
         />
         <InputText
           label="Line 2"
           onChange={setFieldValue}
           name="line2"
-          value={values.line2}
+          value={line2}
         />
         <InputText
           label="Line 3"
           onChange={setFieldValue}
           name="line3"
-          value={values.line3}
+          value={line3}
         />
         <InputText
           label="Town"
           onChange={setFieldValue}
           name="town"
+          value={town}
           required
-          value={values.town}
         />
         <InputText
           label="Post code"
           onChange={setFieldValue}
           name="postcode"
+          value={postcode}
           required
-          value={values.postcode}
         />
         <div>
-          <InputLabel text="Country" />
+          <InputLabel text="Country" required />
           <Select<{ value: string }>
             classNamePrefix="react-select"
             name="country"
             placeholder=""
-            value={countries.find((el) => el.value === values.country)}
+            value={countries.find((el) => el.value === country)}
             getOptionLabel={({ value }): string => value}
             options={countries}
           />
