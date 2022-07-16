@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { InputRadioGroup } from "../InputRadioGroup";
-import CreateEditModalForm from "./CreateEditForm";
-import { newAddress } from "./CreateEditForm/newAddress";
+import CreateEditModalForm from "./AddEditForm";
+import { newAddress } from "./AddEditForm/newAddress";
 
 export interface Address {
   id: number | null;
@@ -23,15 +23,8 @@ interface AddressBooksProps {
   onDelete: (id: number) => void;
 }
 
-export const AddressBook: React.FC<AddressBooksProps> = ({
-  options,
-  name,
-  onChange,
-  value,
-  onAdd,
-  onEdit,
-  onDelete
-}) => {
+export const AddressBook: React.FC<AddressBooksProps> = (props) => {
+  const { options, name, onChange, value, onAdd, onEdit, onDelete } = props;
   const [addressToForm, setAddressToForm] = useState<Address | null>();
   return (
     <>
@@ -43,15 +36,17 @@ export const AddressBook: React.FC<AddressBooksProps> = ({
             <span className="ml-4 font-bold inline-block w-24">
               {address.country}
             </span>
-            <span className="ml-4 text-md text-gray-600">{`${address.line1}, ${address.line2}, ${address.line3}`}</span>
+            <span className="ml-4 text-md text-gray-600">{`${address.line1} `}</span>
+            <span className="text-md text-gray-600 hidden md:inline">{`, ${address.line2} `}</span>
+            <span className="text-md text-gray-600 hidden md:inline">{`, ${address.line3}`}</span>
             <span
-              className="text-custom-green cursor-pointer ml-4 hover:"
+              className="text-custom-green cursor-pointer ml-4 hover:underline"
               onClick={(): void => setAddressToForm(address)}
             >
               Edit
             </span>
             <span
-              className="text-custom-green cursor-pointer ml-2"
+              className="text-custom-green cursor-pointer ml-2 hover:underline"
               onClick={(): void => setAddressToForm(address)}
             >
               Remove
@@ -64,7 +59,7 @@ export const AddressBook: React.FC<AddressBooksProps> = ({
         onChange={onChange}
       />
       <span
-        className="text-custom-green mt-8 inline-block cursor-pointer"
+        className="text-custom-green mt-8 inline-block cursor-pointer hover:underline"
         onClick={(): void => setAddressToForm(newAddress)}
       >
         Add more addresses

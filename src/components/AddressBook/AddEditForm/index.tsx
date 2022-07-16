@@ -10,7 +10,7 @@ interface ModalFormProps {
   onCancel: () => void;
 }
 
-const CreateEditModalForm: React.FC<ModalFormProps> = (props) => {
+const AddEditModalForm: React.FC<ModalFormProps> = (props) => {
   const { address, onOk, onCancel } = props;
   const { values, setValues, setFieldValue } = useFormik<Address>({
     initialValues: address,
@@ -23,7 +23,7 @@ const CreateEditModalForm: React.FC<ModalFormProps> = (props) => {
     <Modal
       onOk={(): void => onOk(address)}
       onCancel={(): void => onCancel()}
-      title="Add address"
+      title={values.id ? "Edit address" : "Add address"}
       open={true}
     >
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4 px-2">
@@ -76,4 +76,4 @@ const CreateEditModalForm: React.FC<ModalFormProps> = (props) => {
   );
 };
 
-export default CreateEditModalForm;
+export default AddEditModalForm;
