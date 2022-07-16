@@ -1,5 +1,5 @@
 import React from "react";
-import InputLabel from "./InputLabel";
+import { InputLabel } from "./InputLabel";
 
 interface InputTextProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {

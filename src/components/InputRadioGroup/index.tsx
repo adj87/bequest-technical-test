@@ -1,5 +1,5 @@
 import React from "react";
-import InputLabel from "../InputLabel";
+import { InputLabel } from "../InputLabel";
 import { InputRadio } from "./InputRadio";
 
 interface InputRadioGroupProps<T> {
