@@ -3,33 +3,15 @@ import { Address, AddressBook } from "components/AddressBook";
 import Topbar from "components/Topbar";
 
 export const Home: React.FC = () => {
-  const [addresses, setAddresses] = useState<Address[]>([
-    {
-      id: 1,
-      country: "Spain",
-      line1: "Flat 23",
-      line2: "Henry House",
-      line3: "Ringers Road ",
-      postcode: "Bromley",
-      town: "Kent"
-    },
-    {
-      id: 2,
-      country: "Scotland",
-      line1: "Flat 23",
-      line2: "Henry House",
-      line3: "Ringers Road ",
-      postcode: "Bromley",
-      town: "Kent"
-    }
-  ]);
+  const [addresses, setAddresses] = useState<Address[]>([]);
   const [values, setValues] = useState({ address_book: "2" });
+  console.log(addresses);
 
   console.log(values);
   return (
     <>
       <Topbar />
-      <main className="m-auto max-w-2xl mt-12 p-2">
+      <main className="m-auto max-w-2xl mt-12 p-4">
         <p className="text-3xl text-extra-bold mb-8 text-center">
           Technical test for Bequest
         </p>
@@ -38,12 +20,20 @@ export const Home: React.FC = () => {
           name="address_book"
           value={values.address_book}
           onChange={(name, value): void => setValues({ address_book: value })}
-          onAdd={(a): void => setAddresses([...addresses, a])}
-          onEdit={(a): void => {
-            const newAddresses = addresses.map((el) => {
-              if (el.id === a.id) return a;
-              return el;
-            });
+          onAddOrEdit={(a): void => {
+            const isEdition = a.id;
+            let newAddresses = [];
+            if (isEdition) {
+              newAddresses = addresses.map((el) => {
+                if (el.id === a.id) return a;
+                return el;
+              });
+            } else {
+              // isAdd
+              const ids = addresses.map((el) => el.id as number);
+              const highestId = getHighestId(ids);
+              newAddresses = [...addresses, { ...a, id: highestId + 1 }];
+            }
             setAddresses(newAddresses);
           }}
           onDelete={(id): void => {
@@ -55,3 +45,6 @@ export const Home: React.FC = () => {
     </>
   );
 };
+
+const getHighestId = (ids: number[]): number =>
+  ids.length === 0 ? 0 : Math.max(...ids);
