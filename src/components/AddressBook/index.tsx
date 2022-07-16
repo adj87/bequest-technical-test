@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { InputRadioGroup } from "../InputRadioGroup";
-import CreateEditModalForm from "./AddEditForm";
+import AddEditModalForm from "./AddEditForm";
 import { newAddress } from "./AddEditForm/newAddress";
 
 export interface Address {
@@ -18,14 +18,15 @@ interface AddressBooksProps {
   name: string;
   value: string;
   onChange: (name: string, value: string) => void;
-  onAdd: (address: Address) => void;
-  onEdit: (address: Address) => void;
+  onAddOrEdit: (address: Address) => void;
   onDelete: (id: number) => void;
 }
 
 export const AddressBook: React.FC<AddressBooksProps> = (props) => {
-  const { options, name, onChange, value, onAdd, onEdit, onDelete } = props;
+  const { options, name, onChange, value, onAddOrEdit, onDelete } = props;
   const [addressToForm, setAddressToForm] = useState<Address | null>();
+  const spanClassName = "text-custom-green cursor-pointer hover:underline";
+
   return (
     <>
       <InputRadioGroup<Address>
@@ -40,14 +41,14 @@ export const AddressBook: React.FC<AddressBooksProps> = (props) => {
             <span className="text-md text-gray-600 hidden md:inline">{`, ${address.line2} `}</span>
             <span className="text-md text-gray-600 hidden md:inline">{`, ${address.line3}`}</span>
             <span
-              className="text-custom-green cursor-pointer ml-4 hover:underline"
+              className={`${spanClassName} ml-4`}
               onClick={(): void => setAddressToForm(address)}
             >
               Edit
             </span>
             <span
-              className="text-custom-green cursor-pointer ml-2 hover:underline"
-              onClick={(): void => setAddressToForm(address)}
+              className={`${spanClassName} ml-2`}
+              onClick={(): void => onDelete(address.id as number)}
             >
               Remove
             </span>
@@ -59,14 +60,17 @@ export const AddressBook: React.FC<AddressBooksProps> = (props) => {
         onChange={onChange}
       />
       <span
-        className="text-custom-green mt-8 inline-block cursor-pointer hover:underline"
+        className={`${spanClassName} inline-block mt-8`}
         onClick={(): void => setAddressToForm(newAddress)}
       >
         Add more addresses
       </span>
       {addressToForm && (
-        <CreateEditModalForm
-          onOk={(a: Address): void => console.log(a)}
+        <AddEditModalForm
+          onOk={(a: Address): void => {
+            onAddOrEdit(a);
+            setAddressToForm(null); // close the modal
+          }}
           address={addressToForm as Address}
           onCancel={(): void => setAddressToForm(null)}
         />
