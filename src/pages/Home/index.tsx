@@ -7,20 +7,20 @@ export const Home: React.FC = () => {
     {
       id: 1,
       country: "Spain",
-      line1: "linea_1",
-      line2: "linea_2",
-      line3: "linea_3",
-      postcode: "Aasda",
-      town: "Huelva"
+      line1: "Flat 23",
+      line2: "Henry House",
+      line3: "Ringers Road ",
+      postcode: "Bromley",
+      town: "Kent"
     },
     {
       id: 2,
       country: "Scotland",
-      line1: "linea_1",
-      line2: "linea_2",
-      line3: "linea_3",
-      postcode: "Aasda",
-      town: "Huelva"
+      line1: "Flat 23",
+      line2: "Henry House",
+      line3: "Ringers Road ",
+      postcode: "Bromley",
+      town: "Kent"
     }
   ]);
   const [values, setValues] = useState({ address_book: "2" });
