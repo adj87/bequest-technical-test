@@ -2,6 +2,7 @@ import { useState } from "react";
 import { InputRadioGroup } from "../InputRadioGroup";
 import AddEditModalForm from "./AddEditForm";
 import { newAddress } from "./AddEditForm/newAddress";
+import OptionLabel from "./OptionLabel";
 
 export interface Address {
   id: number | null;
@@ -32,26 +33,11 @@ export const AddressBook: React.FC<AddressBooksProps> = (props) => {
         name={name}
         options={options}
         optionLabel={(address): React.ReactElement => (
-          <>
-            <span className="ml-4 font-bold inline-block w-24">
-              {address.line1}
-            </span>
-            <span className="ml-4 text-md text-gray-600 hidden xs:inline">{`${address.line2} `}</span>
-            <span className="text-md text-gray-600 hidden md:inline">{`, ${address.line3} `}</span>
-            <span className="text-md text-gray-600 hidden md:inline">{`, ${address.country}`}</span>
-            <span
-              className={"span-green ml-4"}
-              onClick={(): void => setAddressToForm(address)}
-            >
-              Edit
-            </span>
-            <span
-              className={`span-green ml-2`}
-              onClick={(): void => onDelete(address.id as number)}
-            >
-              Remove
-            </span>
-          </>
+          <OptionLabel
+            address={address}
+            onDelete={(id: number): void => onDelete(id)}
+            onEdit={(a): void => onAddOrEdit(a)}
+          />
         )}
         valueKey={"id"}
         value={value}
