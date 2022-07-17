@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import { Modal } from "components";
-import { validationSchema as validate } from "./validationSchema";
+import { validationSchema as validate } from "./Form/validationSchema";
 import { Form } from "./Form";
 
 import { Address } from "..";

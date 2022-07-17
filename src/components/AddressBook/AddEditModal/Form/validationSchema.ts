@@ -1,4 +1,4 @@
-import { Address } from "..";
+import { Address } from "../../index";
 
 export const validationSchema: any = (values: Address) => {
   const errors: any = {};

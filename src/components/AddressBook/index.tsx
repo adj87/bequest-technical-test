@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { InputRadioGroup } from "../InputRadioGroup";
 import AddEditModalForm from "./AddEditModal";
-import { newAddress } from "./AddEditModal/newAddress";
+import { newAddress } from "./AddEditModal/Form/newAddress";
 import OptionLabel from "./OptionLabel";
 
 export interface Address {

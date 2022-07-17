@@ -1,4 +1,4 @@
-import { Address } from "..";
+import { Address } from "../..";
 
 export const newAddress: Address = {
   id: null,
