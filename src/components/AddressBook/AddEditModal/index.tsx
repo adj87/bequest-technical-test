@@ -46,7 +46,10 @@ const AddEditModalForm: React.FC<ModalFormProps> = (props) => {
         />
       </Modal>
       {openPCodeModal && (
-        <PostCodeModal onCancel={(): void => setOpenPCodeModal(false)} />
+        <PostCodeModal
+          onCancel={(): void => setOpenPCodeModal(false)}
+          postCode={values.postcode}
+        />
       )}
     </>
   );

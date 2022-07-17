@@ -1,11 +1,16 @@
+import { InputText } from "components/InputText";
 import { Modal } from "components/Modal";
+import { useState } from "react";
+import Select from "react-select";
 
 interface PostCodeModalProps {
   onCancel: () => void;
+  postCode: string;
 }
 
 export const PostCodeModal: React.FC<PostCodeModalProps> = (props) => {
-  const { onCancel } = props;
+  const { onCancel, postCode: initialPostCode } = props;
+  const [postCode, setPostCode] = useState(initialPostCode);
   return (
     <Modal
       open={true}
@@ -14,7 +19,12 @@ export const PostCodeModal: React.FC<PostCodeModalProps> = (props) => {
       onOk={onCancel}
       size="md"
     >
-      Hiiiii there
+      <InputText
+        label="PostCode"
+        value={postCode}
+        onChange={(a, b): void => setPostCode(b as string)}
+      />
+      <Select value={initialPostCode} classNamePrefix="react-select" />
     </Modal>
   );
 };
