@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { InputRadioGroup } from "../InputRadioGroup";
-import AddEditModalForm from "./AddEditModal";
+import AddEditModal from "./AddEditModal";
 import { newAddress } from "./AddEditModal/Form/newAddress";
 import OptionLabel from "./OptionLabel";
 
@@ -51,7 +51,7 @@ export const AddressBook: React.FC<AddressBooksProps> = (props) => {
         Add more addresses
       </span>
       {addressToForm && (
-        <AddEditModalForm
+        <AddEditModal
           onSubmit={(a: Address): void => {
             onAddOrEdit(a);
             setAddressToForm(null); // close the modal
