@@ -5,7 +5,7 @@ interface InputTextProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   onChange: (name: string, value: string | number) => void;
   label: string;
-  error?: string;
+  error?: string | boolean;
 }
 
 export const InputText: React.FC<InputTextProps> = (props) => {
@@ -22,9 +22,10 @@ export const InputText: React.FC<InputTextProps> = (props) => {
           className={className}
           {...inputProps}
         />
-        {error && (
-          <p className="mt-2 text-sm text-red-600 dark:text-red-500">{error}</p>
-        )}
+
+        <p className="mt-2 text-sm text-red-600 dark:text-red-500">
+          {error ?? null}
+        </p>
       </div>
     </>
   );

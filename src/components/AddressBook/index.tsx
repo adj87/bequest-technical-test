@@ -67,7 +67,7 @@ export const AddressBook: React.FC<AddressBooksProps> = (props) => {
       </span>
       {addressToForm && (
         <AddEditModalForm
-          onOk={(a: Address): void => {
+          onSubmit={(a: Address): void => {
             onAddOrEdit(a);
             setAddressToForm(null); // close the modal
           }}
