@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { InputRadioGroup } from "../InputRadioGroup";
-import AddEditModalForm from "./AddEditForm";
-import { newAddress } from "./AddEditForm/newAddress";
+import AddEditModalForm from "./AddEditModal";
+import { newAddress } from "./AddEditModal/newAddress";
 import OptionLabel from "./OptionLabel";
 
 export interface Address {
@@ -36,7 +36,7 @@ export const AddressBook: React.FC<AddressBooksProps> = (props) => {
           <OptionLabel
             address={address}
             onDelete={(id: number): void => onDelete(id)}
-            onEdit={(a): void => onAddOrEdit(a)}
+            onEdit={(a): void => setAddressToForm(a)}
           />
         )}
         valueKey={"id"}
