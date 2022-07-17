@@ -1,4 +1,5 @@
 import React from "react";
+import { InputErrorMessage } from "./InputErrorMessage";
 import { InputLabel } from "./InputLabel";
 
 interface InputTextProps
@@ -23,9 +24,7 @@ export const InputText: React.FC<InputTextProps> = (props) => {
           {...inputProps}
         />
 
-        <p className="mt-2 text-sm text-red-600 dark:text-red-500">
-          {error ?? null}
-        </p>
+        <InputErrorMessage text={error} />
       </div>
     </>
   );
