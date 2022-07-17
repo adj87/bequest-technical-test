@@ -25,7 +25,6 @@ interface AddressBooksProps {
 export const AddressBook: React.FC<AddressBooksProps> = (props) => {
   const { options, name, onChange, value, onAddOrEdit, onDelete } = props;
   const [addressToForm, setAddressToForm] = useState<Address | null>();
-  const spanClassName = "text-custom-green cursor-pointer hover:underline";
 
   return (
     <>
@@ -41,13 +40,13 @@ export const AddressBook: React.FC<AddressBooksProps> = (props) => {
             <span className="text-md text-gray-600 hidden md:inline">{`, ${address.line3} `}</span>
             <span className="text-md text-gray-600 hidden md:inline">{`, ${address.country}`}</span>
             <span
-              className={`${spanClassName} ml-4`}
+              className={"span-green ml-4"}
               onClick={(): void => setAddressToForm(address)}
             >
               Edit
             </span>
             <span
-              className={`${spanClassName} ml-2`}
+              className={`span-green ml-2`}
               onClick={(): void => onDelete(address.id as number)}
             >
               Remove
@@ -60,7 +59,7 @@ export const AddressBook: React.FC<AddressBooksProps> = (props) => {
         onChange={onChange}
       />
       <span
-        className={`${spanClassName} inline-block mt-8`}
+        className={`span-green inline-block mt-8`}
         onClick={(): void => setAddressToForm(newAddress)}
       >
         Add more addresses

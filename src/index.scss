@@ -50,3 +50,9 @@ body {
 }
 
 // End customize react-select styles
+
+.span-green {
+  @apply text-custom-green;
+  @apply cursor-pointer;
+  @apply hover:underline;
+}

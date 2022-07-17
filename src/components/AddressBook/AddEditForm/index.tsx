@@ -31,6 +31,7 @@ const AddEditModalForm: React.FC<ModalFormProps> = (props) => {
       title={id ? "Edit address" : "Add address"}
       open={true}
     >
+      <span className="float-right span-green">Search by postcode</span>
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4 px-2">
         <InputText
           label="Line 1"
