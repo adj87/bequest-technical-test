@@ -22,7 +22,7 @@ export const Modal: React.FC<ModalButtonProps> = (props) => {
         id="defaultModal"
         tabIndex={-1}
         aria-hidden="true"
-        className="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full flex"
+        className="fixed top-0 left-0 right-0 z-50 w-full overflow-x-hidden overflow-y-auto md:inset-0 md:h-full flex max-h-screen"
       >
         <div
           className={`relative w-full h-full ${sizes[size]} p-4 h-auto m-auto`}
@@ -53,7 +53,12 @@ export const Modal: React.FC<ModalButtonProps> = (props) => {
               </button>
             </div>
             {/* Modal body */}
-            <div className="p-6 space-y-6">{children}</div>
+            <div
+              className="p-4 space-y-6 overflow-x-auto"
+              style={{ maxHeight: "calc(100vh - 168px)" }}
+            >
+              {children}
+            </div>
             {/* Modal footer */}
             <div className="flex items-center justify-end p-4 space-x-2 border-t border-gray-200 rounded-b">
               <Button
