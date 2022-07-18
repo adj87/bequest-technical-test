@@ -42,10 +42,11 @@ export const PostCodeModal: React.FC<PostCodeModalProps> = (props) => {
         value={postCode}
         onChange={(a, b) => setPostCode(b as string)}
         error={error}
+        placeholder="Example 'nn13er'"
       />
       <InputLabel text="Select address" />
       <Select<Address>
-        value={values}
+        value={values.line1 ? values : null} // if values line1 exists, it means that an address has been selected when onChange
         classNamePrefix="react-select"
         styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
         menuPortalTarget={document.body}
