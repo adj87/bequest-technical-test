@@ -1,7 +1,7 @@
 import React from "react";
 
 interface InputErrorMessageProps {
-  text?: string | boolean;
+  text?: string | boolean | null;
 }
 
 export const InputErrorMessage: React.FC<InputErrorMessageProps> = (props) => {

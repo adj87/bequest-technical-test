@@ -74,6 +74,7 @@ export const Form: React.FC<FormProps> = (props) => {
           onChange={({ value }: any, { name }): void =>
             setFieldValue(name as string, value) as unknown as void
           }
+          menuPosition={"fixed"}
         />
         <InputErrorMessage text={isFormEverSubmitted && errors.country} />
       </div>

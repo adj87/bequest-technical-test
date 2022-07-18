@@ -6,7 +6,7 @@ interface InputTextProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> {
   onChange: (name: string, value: string | number) => void;
   label: string;
-  error?: string | boolean;
+  error?: string | boolean | null;
 }
 
 export const InputText: React.FC<InputTextProps> = (props) => {
