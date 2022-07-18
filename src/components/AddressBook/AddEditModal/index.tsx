@@ -16,7 +16,7 @@ interface ModalFormProps {
 const AddEditModalForm: React.FC<ModalFormProps> = (props) => {
   const [openPCodeModal, setOpenPCodeModal] = useState<boolean>(false);
   const { address, onSubmit, onCancel } = props;
-  const { values, setFieldValue, errors, submitForm, submitCount } =
+  const { values, setFieldValue, errors, submitForm, submitCount, setValues } =
     useFormik<Address>({
       initialValues: address,
       onSubmit,
@@ -47,8 +47,12 @@ const AddEditModalForm: React.FC<ModalFormProps> = (props) => {
       </Modal>
       {openPCodeModal && (
         <PostCodeModal
-          onCancel={(): void => setOpenPCodeModal(false)}
+          onCancel={() => setOpenPCodeModal(false)}
           postCode={values.postcode}
+          onSubmit={({ id, ...rest }) => {
+            setOpenPCodeModal(false); // close the modal
+            setValues(rest); // remove the id from the values we want to save because it may be an edition, therefore we are interested in keeping the original id
+          }}
         />
       )}
     </>

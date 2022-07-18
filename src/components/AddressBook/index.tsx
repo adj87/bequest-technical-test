@@ -5,7 +5,7 @@ import { newAddress } from "./AddEditModal/Form/newAddress";
 import OptionLabel from "./OptionLabel";
 
 export interface Address {
-  id: number | null;
+  id?: number | null;
   line1: string;
   line2: string;
   line3: string;

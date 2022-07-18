@@ -8,14 +8,20 @@ interface OptionLabelProps {
 
 const OptionLabel: React.FC<OptionLabelProps> = (props) => {
   const { address, onDelete, onEdit } = props;
+  const { line1, line2, line3, country } = address;
+  const addComma = (string: string) => string && `${string},`;
   return (
     <>
       {" "}
-      <span className="ml-4 font-bold inline-block w-24">{address.line1}</span>
-      <span className="ml-4 text-md text-gray-600 hidden xs:inline">{`${address.line2} `}</span>
-      <span className="text-md text-gray-600 hidden md:inline">{`, ${address.line3} `}</span>
-      <span className="text-md text-gray-600 hidden md:inline">{`, ${address.country}`}</span>
-      <span className={"span-green ml-4"} onClick={(): void => onEdit(address)}>
+      <span className="ml-4 font-bold inline-block w-30">{line1}</span>
+      <span className="ml-4 text-md text-gray-600 hidden xs:inline">
+        {addComma(line2)}
+      </span>
+      <span className="text-md text-gray-600 hidden md:inline">
+        {addComma(line3)}
+      </span>
+      <span className="text-md text-gray-600 hidden md:inline">{country}</span>
+      <span className={"span-green ml-4"} onClick={() => onEdit(address)}>
         Edit
       </span>
       <span
