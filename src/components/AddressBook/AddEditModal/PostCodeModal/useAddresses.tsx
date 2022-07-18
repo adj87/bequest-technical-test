@@ -29,7 +29,10 @@ export const useAddresses = (postCode: string): HookResult => {
           });
           setAddresses(addressesMapped);
         })
-        .catch((err) => setError(err.message))
+        .catch((err) => {
+          setAddresses([]);
+          setError(err.message);
+        })
         .finally(() => setLoading(false));
     }, 500),
     []
