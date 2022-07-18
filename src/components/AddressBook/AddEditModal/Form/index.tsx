@@ -1,9 +1,7 @@
-import { Address } from "components/AddressBook";
-import { InputErrorMessage } from "components/InputErrorMessage";
-import { InputLabel } from "components/InputLabel";
-import { InputText } from "components/InputText";
-import { FormikErrors } from "formik";
 import Select from "react-select";
+import { Address } from "components/AddressBook";
+import { InputErrorMessage, InputLabel, InputText } from "components/";
+import { FormikErrors } from "formik";
 
 interface FormProps {
   values: Address;
@@ -16,7 +14,7 @@ interface FormProps {
   ) => Promise<FormikErrors<Address>> | Promise<void>;
 }
 
-const countries = [{ value: "england" }, { value: "spain" }];
+const countries = [{ value: "England" }, { value: "Wales" },{ value: "Scotland" }]; // prettier-ignore
 
 export const Form: React.FC<FormProps> = (props) => {
   const { values, errors, submitCount, setFieldValue } = props;
