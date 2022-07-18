@@ -1,6 +1,6 @@
-import { Address } from "components/AddressBook";
 import { useCallback, useEffect, useState } from "react";
-import { debounce } from "utils.js";
+import { Address } from "components/AddressBook";
+import { debounce } from "utils";
 
 interface HookResult {
   addresses: Address[];
@@ -25,7 +25,7 @@ export const useAddresses = (postCode: string): HookResult => {
           const { addresses } = res;
           const addressesMapped = addresses.map((address: any) => {
             const { line_1: line1, line_2: line2, line_3: line3, country,  town_or_city: town } = address; // prettier-ignore
-            return { line1, line2, line3, country, postcode, town, id:null }; // prettier-ignore
+            return { line1, line2, line3, country, postcode, town }; // prettier-ignore
           });
           setAddresses(addressesMapped);
         })
@@ -38,7 +38,7 @@ export const useAddresses = (postCode: string): HookResult => {
   useEffect((): void => {
     setError(null); // remove error whenever the user start to type
     if (!postCode) return; // if postCode is empty, stop
-    setLoading(true); // to give a better use expirience, we set loading when start to type
+    setLoading(true); // to give a better use expirience, we set loading when start to type instead of inside debounce
     fetchAddresses(postCode);
   }, [postCode, fetchAddresses]);
 

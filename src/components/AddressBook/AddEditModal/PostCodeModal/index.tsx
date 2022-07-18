@@ -1,7 +1,8 @@
+import { Address } from "components/AddressBook";
 import { InputLabel } from "components/InputLabel";
 import { InputText } from "components/InputText";
 import { Modal } from "components/Modal";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Select from "react-select";
 import { useAddresses } from "./useAddresses";
 
@@ -13,6 +14,7 @@ interface PostCodeModalProps {
 export const PostCodeModal: React.FC<PostCodeModalProps> = (props) => {
   const { onCancel, postCode: initialPostCode } = props;
   const [postCode, setPostCode] = useState(initialPostCode);
+  const [address, setAddress] = useState<Address | null>(null);
   const { loading, addresses, error } = useAddresses(postCode);
   return (
     <Modal
@@ -31,14 +33,17 @@ export const PostCodeModal: React.FC<PostCodeModalProps> = (props) => {
       <div>
         <InputLabel text="Select address" />
       </div>
-      <Select
-        value={initialPostCode}
+      <Select<Address>
+        value={address}
         classNamePrefix="react-select"
         styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
         menuPortalTarget={document.body}
         menuPosition={"fixed"}
-        menuIsOpen={addresses.length > 0}
         isLoading={loading}
+        getOptionValue={(a): string => `${a.line1}-${a.town}-${a.country}`}
+        getOptionLabel={(a): string => `${a.line1}, ${a.town}`}
+        options={addresses}
+        onChange={(a): void => setAddress(a)}
       />
     </Modal>
   );
