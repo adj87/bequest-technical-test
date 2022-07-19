@@ -17,7 +17,7 @@ export const InputText: React.FC<InputTextProps> = (props) => {
   return (
     <>
       <div className="mb-6">
-        <InputLabel required={required} text={label} />
+        <InputLabel required={required} text={label} htmlFor={inputProps.id} />
         <input
           onChange={({ target }): void => onChange(target.name, target.value)}
           className={className}
