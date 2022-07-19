@@ -33,7 +33,8 @@
       "react-app/jest"
     ],
     "rules": {
-      "react-hooks/exhaustive-deps": "off"
+      "react-hooks/exhaustive-deps": "off",
+      "eqeqeq": 0
     },
     "ignorePatterns": "src/reportWebVitals.ts"
   },
