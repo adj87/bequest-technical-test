@@ -49,9 +49,9 @@ const AddEditModalForm: React.FC<ModalFormProps> = (props) => {
         <PostCodeModal
           onCancel={() => setOpenPCodeModal(false)}
           postCode={values.postcode}
-          onSubmit={({ id, ...rest }) => {
+          onSubmit={(rest) => {
             setOpenPCodeModal(false); // close the modal
-            setValues(rest); // remove the id from the values we want to save because it may be an edition, therefore we are interested in keeping the original id
+            setValues({ ...rest, id: values.id }); // spread the new values and keep the id
           }}
         />
       )}
