@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { Address } from "components/AddressBook";
 import { debounce } from "utils";
+import { fetchAddresses } from "./fetchAddresses";
 
 interface HookResult {
   addresses: Address[];
@@ -13,15 +14,10 @@ export const useAddresses = (postCode: string): HookResult => {
   const [error, setError] = useState<null | string>(null);
   const [addresses, setAddresses] = useState<Address[]>([]);
 
-  const fetchAddresses = useCallback(
+  const fetchAddressesWithDebounce = useCallback(
     debounce((postcode: string) => {
-      fetch(url(postcode))
-        .then((res) => res.json())
-        .then((res) => {
-          if (res.Message) throw new Error(res.Message); // force error when no result is found.
-          return res;
-        })
-        .then((res) => {
+      fetchAddresses(postcode)
+        .then((res: any) => {
           const { addresses } = res;
           const addressesMapped = addresses.map((address: any) => {
             const { line_1: line1, line_2: line2, line_3: line3, country,  town_or_city: town } = address; // prettier-ignore
@@ -29,7 +25,7 @@ export const useAddresses = (postCode: string): HookResult => {
           });
           setAddresses(addressesMapped);
         })
-        .catch((err) => {
+        .catch((err: Error) => {
           setAddresses([]);
           setError(err.message);
         })
@@ -42,11 +38,8 @@ export const useAddresses = (postCode: string): HookResult => {
     setError(null); // remove error whenever the user start to type
     if (!postCode) return; // if postCode is empty, stop
     setLoading(true); // to give a better use expirience, we set loading when start to type instead of inside debounce
-    fetchAddresses(postCode);
-  }, [postCode, fetchAddresses]);
+    fetchAddressesWithDebounce(postCode);
+  }, [postCode, fetchAddressesWithDebounce]);
 
   return { loading, addresses, error };
 };
-
-const url = (postCode: string): string =>
-  `https://api.getAddress.io/find/${postCode}?api-key=e_MnyCEQpEu9vBY6K2_2CQ35933&expand=true`;
