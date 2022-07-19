@@ -1,21 +1,13 @@
 import React, { useState } from "react";
 import { Address, AddressBook, Topbar, Button, InputErrorMessage} from "components"; //prettier-ignore
+import { useForm } from "./useForm";
 
 export const Home: React.FC = () => {
   const [addresses, setAddresses] = useState<Address[]>([]);
-  const [addressId, setAddressId] = useState<string | null>(null);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  const onSubmit = () => {
-    // eslint-disable-next-line eqeqeq
-    const address = addresses.find((a) => a.id == addressId);
-    if (address) {
-      const addressStringified = JSON.stringify(address, null, 2);
-      alert(addressStringified);
-      return setErrorMessage(null);
-    }
-    setErrorMessage("Select an address first");
-  };
+  const { values, errors, setFieldValue, submitForm } = useForm(
+    { address: null },
+    addresses
+  );
 
   return (
     <>
@@ -26,9 +18,9 @@ export const Home: React.FC = () => {
         </p>
         <AddressBook
           options={addresses}
-          name="address_book"
-          value={addressId}
-          onChange={(_, value): void => setAddressId(value)}
+          name="address"
+          value={values.address}
+          onChange={setFieldValue}
           onAddOrEdit={(a): void => {
             const isEdition = a.id;
             let newAddresses = [];
@@ -49,11 +41,15 @@ export const Home: React.FC = () => {
           onDelete={(id): void => {
             const newAddresses = addresses.filter((el) => el.id !== id);
             setAddresses(newAddresses);
+            if (values.address == id.toString()) {
+              // if value to be deleted is the selected on in form, then set address to null
+              setFieldValue("address", null);
+            }
           }}
         />
-        <InputErrorMessage text={errorMessage} />
+        <InputErrorMessage text={errors.address} />
         <div className="flex justify-end">
-          <Button text="Submit address" onClick={onSubmit} />
+          <Button text="Submit address" onClick={submitForm} />
         </div>
       </main>
     </>
