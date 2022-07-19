@@ -1,9 +1,21 @@
 import React, { useState } from "react";
-import { Address, AddressBook, Topbar, Button } from "components";
+import { Address, AddressBook, Topbar, Button, InputErrorMessage} from "components"; //prettier-ignore
 
 export const Home: React.FC = () => {
   const [addresses, setAddresses] = useState<Address[]>([]);
   const [addressId, setAddressId] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const onSubmit = () => {
+    // eslint-disable-next-line eqeqeq
+    const address = addresses.find((a) => a.id == addressId);
+    if (address) {
+      const addressStringified = JSON.stringify(address, null, 2);
+      alert(addressStringified);
+      return setErrorMessage(null);
+    }
+    setErrorMessage("Select an address first");
+  };
 
   return (
     <>
@@ -29,7 +41,8 @@ export const Home: React.FC = () => {
               // isAdd
               const ids = addresses.map((el) => el.id as number);
               const highestId = getHighestId(ids);
-              newAddresses = [...addresses, { ...a, id: highestId + 1 }]; // generate an increment id
+              const newAddress = { ...a, id: highestId + 1 }; // generate an increment id
+              newAddresses = [...addresses, newAddress];
             }
             setAddresses(newAddresses);
           }}
@@ -38,8 +51,9 @@ export const Home: React.FC = () => {
             setAddresses(newAddresses);
           }}
         />
+        <InputErrorMessage text={errorMessage} />
         <div className="flex justify-end">
-          <Button text="Submit address" />
+          <Button text="Submit address" onClick={onSubmit} />
         </div>
       </main>
     </>
