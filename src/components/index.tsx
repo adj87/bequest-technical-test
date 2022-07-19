@@ -5,3 +5,4 @@ export * from "./InputLabel";
 export * from "./InputErrorMessage";
 export * from "./Button";
 export * from "./Modal";
+export * from "./Topbar";
