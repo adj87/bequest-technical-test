@@ -44,21 +44,23 @@ export const PostCodeModal: React.FC<PostCodeModalProps> = (props) => {
         error={error}
         placeholder="Example 'nn13er'"
       />
-      <InputLabel text="Select address" />
-      <Select<Address>
-        value={values.line1 ? values : null} // if values line1 exists, it means that an address has been selected when onChange
-        classNamePrefix="react-select"
-        styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
-        menuPortalTarget={document.body}
-        menuPosition={"fixed"}
-        isLoading={loading}
-        getOptionValue={(a) => `${a.line1}-${a.town}-${a.country}`}
-        getOptionLabel={(a) => `${a.line1}, ${a.town}`}
-        options={addresses}
-        // @ts-expect-error
-        onChange={(a) => setValues(a)}
-      />
-      <InputErrorMessage text={isFormEverSubmitted && errors.country} />
+      <div>
+        <InputLabel text="Select address" />
+        <Select<Address>
+          value={values.line1 ? values : null} // if values line1 exists, it means that an address has been selected when onChange
+          classNamePrefix="react-select"
+          styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
+          menuPortalTarget={document.body}
+          menuPosition={"fixed"}
+          isLoading={loading}
+          getOptionValue={(a) => `${a.line1}-${a.town}-${a.country}`}
+          getOptionLabel={(a) => `${a.line1}, ${a.town}`}
+          options={addresses}
+          // @ts-expect-error
+          onChange={(a) => setValues(a)}
+        />
+        <InputErrorMessage text={isFormEverSubmitted && errors.country} />
+      </div>
     </Modal>
   );
 };
