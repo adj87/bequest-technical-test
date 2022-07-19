@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Address, AddressBook } from "components/AddressBook";
-import Topbar from "components/Topbar";
+import { Address, AddressBook, Topbar, Button } from "components";
 
 export const Home: React.FC = () => {
   const [addresses, setAddresses] = useState<Address[]>([]);
@@ -41,6 +40,9 @@ export const Home: React.FC = () => {
             setAddresses(newAddresses);
           }}
         />
+        <div className="flex justify-end">
+          <Button text="Submit address" />
+        </div>
       </main>
     </>
   );
