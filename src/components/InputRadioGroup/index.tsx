@@ -7,7 +7,7 @@ interface InputRadioGroupProps<T> {
   optionLabel: React.FC<T>;
   valueKey: keyof T;
   options: T[];
-  value: string;
+  value: string | null;
   name: string;
   required?: boolean;
   label: string;

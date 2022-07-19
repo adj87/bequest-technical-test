@@ -17,7 +17,7 @@ export interface Address {
 interface AddressBooksProps {
   options: Address[];
   name: string;
-  value: string;
+  value: string | null;
   onChange: (name: string, value: string) => void;
   onAddOrEdit: (address: Address) => void;
   onDelete: (id: number) => void;

@@ -3,10 +3,8 @@ import { Address, AddressBook, Topbar, Button } from "components";
 
 export const Home: React.FC = () => {
   const [addresses, setAddresses] = useState<Address[]>([]);
-  const [values, setValues] = useState({ address_book: "2" });
-  console.log(addresses);
+  const [addressId, setAddressId] = useState<string | null>(null);
 
-  console.log(values);
   return (
     <>
       <Topbar />
@@ -17,8 +15,8 @@ export const Home: React.FC = () => {
         <AddressBook
           options={addresses}
           name="address_book"
-          value={values.address_book}
-          onChange={(name, value): void => setValues({ address_book: value })}
+          value={addressId}
+          onChange={(_, value): void => setAddressId(value)}
           onAddOrEdit={(a): void => {
             const isEdition = a.id;
             let newAddresses = [];
@@ -31,7 +29,7 @@ export const Home: React.FC = () => {
               // isAdd
               const ids = addresses.map((el) => el.id as number);
               const highestId = getHighestId(ids);
-              newAddresses = [...addresses, { ...a, id: highestId + 1 }];
+              newAddresses = [...addresses, { ...a, id: highestId + 1 }]; // generate an increment id
             }
             setAddresses(newAddresses);
           }}
