@@ -2,7 +2,7 @@
 import React from "react";
 import selectEvent from "react-select-event";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import App from "./App";
+import App from "../App";
 
 test("Create an address, select it and submit home form", async () => {
   render(<App />);
