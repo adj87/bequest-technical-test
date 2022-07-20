@@ -27,7 +27,7 @@ export const Form: React.FC<FormProps> = (props) => {
           label="Line 1"
           onChange={setFieldValue}
           name="line1"
-          id={"line2"}
+          id={"line1"}
           value={line1}
           error={isFormEverSubmitted && errors.line1}
           required
