@@ -29,15 +29,26 @@ test("Submit form successfully", async () => {
   await selectEvent.openMenu(country);
   await selectEvent.select(country, "England");
 
-  // submit form
-  const button = screen.getByText("Save");
-  fireEvent.click(button);
+  // submit form to create an address
+  const buttonCreateAddress = screen.getByText("Save");
+  fireEvent.click(buttonCreateAddress);
 
+  let label;
   await waitFor(() => {
-    const label = screen.getByLabelText(/Example line1/i);
-
+    label = screen.getByLabelText(/Example line1/i);
     expect(label).toBeInTheDocument();
   });
+
+  fireEvent.click(label);
+  expect(label).toBeChecked();
+
+  const buttonSubmitAddress = screen.getByText("Submit address");
+  fireEvent.click(buttonSubmitAddress);
+  await waitFor(() => {
+    const alert = jest.spyOn(window, "alert").mockImplementation();
+    expect(alert).toHaveBeenCalledTimes(1);
+  });
+
   /*   await waitFor(() => {
     const required = screen.getAllByText(/Required/i)[0];
     expect(required).toBeInTheDocument();
