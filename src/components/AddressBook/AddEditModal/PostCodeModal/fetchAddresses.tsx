@@ -1,27 +1,26 @@
-// I use this file only to mock data because of limitations of getaddress.io free subscription
-// I've been commenting and uncommenting one or the other when needed
+// I've been commenting and uncommenting one or the other when needed because of limitations of getaddress.io free subscription
 
-/* const url = (postCode: string): string =>
+const url = (postCode: string): string =>
   `https://api.getAddress.io/find/${postCode}?api-key=e_MnyCEQpEu9vBY6K2_2CQ35933&expand=true`;
 
 export const fetchAddresses = (postCode: string) =>
-  fetch(url(postcode))
+  fetch(url(postCode))
     .then((res) => res.json())
     .then((res) => {
       if (res.Message) throw new Error(res.Message); // force error when no result is found.
       return res;
     });
- */
-export const fetchAddresses = (postcode: string) => {
+
+/* export const fetchAddresses = (postcode: string) => {
   return new Promise((res, rej) => {
     // I do this to simulate errors when working with local data
     postcode === "asd" // KW1 4YT
-      ? res(originalAddressesArray)
+      ? res(mockAddressesFromAddressIo)
       : rej({ message: "This postCode is incorrect" });
   });
 };
 
-export const originalAddressesArray = {
+export const mockAddressesFromAddressIo = {
   postcode: "KW1 4YT",
   latitude: 58.6356815,
   longitude: -3.0614963,
@@ -419,3 +418,4 @@ export const originalAddressesArray = {
     }
   ]
 };
+ */
