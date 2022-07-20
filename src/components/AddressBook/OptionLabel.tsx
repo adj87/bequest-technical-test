@@ -12,9 +12,8 @@ const OptionLabel: React.FC<OptionLabelProps> = (props) => {
   const { line1, line2, line3, country } = address;
   const addComma = (string: string) => string && `${string}, `;
   return (
-    <label htmlFor={htmlFor} className="flex items-center inline-block">
-      {" "}
-      <span className="ml-4 font-bold inline-block max-w-32 md:max-w-44 truncate">
+    <label htmlFor={htmlFor} className="flex items-center flex-wrap px-2">
+      <span className="font-bold inline-block max-w-32 md:max-w-44 truncate">
         {line1}
       </span>
       <span className="ml-4 text-md text-gray-600 hidden xs:inline-block mr-2">
