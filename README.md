@@ -1,5 +1,7 @@
 Demo: [link to the app deployed](https://adj87.github.io/bequest-technical-test)
 
+# Technical test for bequest
+
 ## Install
 
 To test the app, please follow the next steps:
