@@ -4,13 +4,14 @@ import { InputRadio } from "./InputRadio";
 
 interface InputRadioGroupProps<T> {
   onChange: (name: string, val: string) => void;
-  optionLabel: React.FC<T>;
+  optionLabel: React.FC<T & { htmlFor: string }>;
   valueKey: keyof T;
   options: T[];
   value: string | null;
   name: string;
   required?: boolean;
   label: string;
+  htmlForOption: (option: T) => string;
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -23,7 +24,8 @@ export const InputRadioGroup = <T,>(props: InputRadioGroupProps<T>) => {
     name,
     required,
     label,
-    valueKey
+    valueKey,
+    htmlForOption
   } = props;
   return (
     <>
@@ -31,6 +33,7 @@ export const InputRadioGroup = <T,>(props: InputRadioGroupProps<T>) => {
         <InputLabel required={required} text={label} />
         {options.map((opt: T) => {
           const value = opt[valueKey] as unknown as string;
+          const htmlFor = htmlForOption(opt);
           return (
             <InputRadio
               key={`option-${value}`}
@@ -39,7 +42,8 @@ export const InputRadioGroup = <T,>(props: InputRadioGroupProps<T>) => {
               onChange={onChange}
               name={name}
               value={value}
-              optionLabel={<OptionLabel {...opt} />}
+              id={htmlFor}
+              optionLabel={<OptionLabel {...opt} htmlFor={htmlFor} />}
             />
           );
         })}

@@ -32,17 +32,19 @@ export const AddressBook: React.FC<AddressBooksProps> = (props) => {
       <InputRadioGroup<Address>
         name={name}
         options={options}
-        optionLabel={(address): React.ReactElement => (
+        optionLabel={({ htmlFor, ...address }): React.ReactElement => (
           <OptionLabel
             address={address}
             onDelete={(id: number): void => onDelete(id)}
             onEdit={(a): void => setAddressToForm(a)}
+            htmlFor={htmlFor}
           />
         )}
         valueKey={"id"}
         value={value}
         label={"Select address"}
         onChange={onChange}
+        htmlForOption={(a) => `address-${a.id}`}
       />
       <span
         className={`span-green inline-block mt-8`}

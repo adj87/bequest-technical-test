@@ -6,6 +6,7 @@ interface InputRadioProps {
   onChange: (name: string, val: string) => void;
   optionLabel: React.ReactNode;
   name: string;
+  id: string;
 }
 
 export const InputRadio: React.FC<InputRadioProps> = ({
@@ -13,13 +14,14 @@ export const InputRadio: React.FC<InputRadioProps> = ({
   checked,
   name,
   onChange,
-  optionLabel
+  optionLabel,
+  id
 }) => {
   return (
     <div className="ml-6 mt-4 flex items-center">
       <input
         checked={checked}
-        id="default-radio-2"
+        id={id}
         type="radio"
         name={name}
         value={value}

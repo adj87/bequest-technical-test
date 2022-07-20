@@ -4,14 +4,15 @@ interface OptionLabelProps {
   address: Address;
   onEdit: (a: Address) => void;
   onDelete: (id: number) => void;
+  htmlFor: string;
 }
 
 const OptionLabel: React.FC<OptionLabelProps> = (props) => {
-  const { address, onDelete, onEdit } = props;
+  const { address, onDelete, onEdit, htmlFor } = props;
   const { line1, line2, line3, country } = address;
   const addComma = (string: string) => string && `${string}, `;
   return (
-    <>
+    <label htmlFor={htmlFor} className="flex items-center inline-block">
       {" "}
       <span className="ml-4 font-bold inline-block max-w-32 md:max-w-44 truncate">
         {line1}
@@ -34,7 +35,7 @@ const OptionLabel: React.FC<OptionLabelProps> = (props) => {
       >
         Delete
       </span>
-    </>
+    </label>
   );
 };
 
