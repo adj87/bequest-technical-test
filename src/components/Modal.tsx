@@ -73,11 +73,11 @@ export const Modal: React.FC<ModalButtonProps> = (props) => {
                 {/* Modal footer */}
                 <div className="flex items-center justify-end p-4 space-x-2 border-t border-gray-200 rounded-b">
                   <Button
-                    text="Cancelar"
+                    text="Cancel"
                     color="white"
                     onClick={(): void => onCancel()}
                   />
-                  <Button text="Aceptar" onClick={(): void => onOk()} />
+                  <Button text="Save" onClick={(): void => onOk()} />
                 </div>
               </div>
             </div>
